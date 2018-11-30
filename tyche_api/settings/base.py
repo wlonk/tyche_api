@@ -17,7 +17,7 @@ import dj_database_url
 from .tools import boolish, env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,7 +38,11 @@ ALLOWED_HOSTS = [
 ]
 
 SECURE_SSL_REDIRECT = env("SECURE_SSL_REDIRECT", default=not DEBUG, type_=boolish)
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SECURE_PROXY_SSL_HEADER = env(
+    "SECURE_PROXY_SSL_HEADER",
+    default="HTTP_X_FORWARDED_PROTO:https",
+    type_=(lambda v: tuple(v.split(":", 1)) if (v is not None and ":" in v) else None),
+)
 
 # Application definition
 
@@ -49,7 +53,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "api",
+    "core",
 ]
 
 MIDDLEWARE = [
@@ -65,12 +69,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "tyche_api.urls"
 
-AUTH_USER_MODEL = "api.User"
+AUTH_USER_MODEL = "core.User"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -97,14 +101,11 @@ DATABASES = {"default": dj_database_url.config(default="postgres:///tyche_api")}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": (
-            "django.contrib.auth.password_validation."
-            "UserAttributeSimilarityValidator"
-        )
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
     },
-    {"NAME": ("django.contrib.auth.password_validation.MinimumLengthValidator")},
-    {"NAME": ("django.contrib.auth.password_validation.CommonPasswordValidator")},
-    {"NAME": ("django.contrib.auth.password_validation.NumericPasswordValidator")},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 
@@ -126,6 +127,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = "static/dist"
-WHITENOISE_ROOT = os.path.join(BASE_DIR, STATIC_ROOT)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
