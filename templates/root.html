@@ -1,1 +1,23 @@
 {% extends "base.html" %}
+
+{% block "header" %}
+<div class="logo">
+  <span class="icon fa-gears"></span>
+</div>
+<div class="content">
+  <div class="inner">
+    <h1>Tyche</h1>
+    <p>
+      Tyche handles cosmetic roles, music, now-streaming roles, and
+      dice rolling for you on Discord.
+    </p>
+  </div>
+</div>
+<nav>
+  <ul>
+    <li><a href="/docs/">Documentation</a></li>
+    <li><a href="/install/">Install</a></li>
+    <li><a href="/about/">About</a></li>
+  </ul>
+</nav>
+{% endblock "header" %}

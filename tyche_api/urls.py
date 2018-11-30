@@ -22,5 +22,8 @@ import core
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("core/", include(core.urls)),
+    path("docs/", TemplateView.as_view(template_name="docs.html")),
+    path("install/", TemplateView.as_view(template_name="install.html")),
+    path("about/", TemplateView.as_view(template_name="about.html")),
     path("", TemplateView.as_view(template_name="root.html")),
 ]
