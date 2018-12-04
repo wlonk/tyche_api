@@ -17,11 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-import core
-
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("core/", include(core.urls)),
+    path("api/", include("core.urls")),
     path("docs/", TemplateView.as_view(template_name="docs.html")),
     path("install/", TemplateView.as_view(template_name="install.html")),
     path("about/", TemplateView.as_view(template_name="about.html")),

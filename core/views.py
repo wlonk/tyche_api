@@ -1,3 +1,21 @@
-from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import Server
 
-# Create your views here.
+
+class PrefixView(APIView):
+    def get(self, request):
+        return Response({
+            "prefix": Server.objects.prefix_for_id(
+                request.query_params.get("server_id", ""),
+            ),
+        })
+
+
+class RoleView(APIView):
+    def get(self, request):
+        return Response({
+            "roles": Server.objects.roles_for_id(
+                request.query_params.get("server_id", ""),
+            ),
+        })
