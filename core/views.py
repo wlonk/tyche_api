@@ -19,3 +19,12 @@ class RoleView(APIView):
                 request.query_params.get("server_id", ""),
             ),
         })
+
+
+class StreamingRoleView(APIView):
+    def get(self, request):
+        return Response(
+            Server.objects.streaming_role_for_id(
+                request.query_params.get("server_id", ""),
+            ),
+        )

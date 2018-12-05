@@ -20,6 +20,19 @@ class ServerManager(models.Manager):
         except (Server.DoesNotExist, Server.MultipleObjectsReturned):
             return []
 
+    def streaming_role_for_id(self, server_id):
+        try:
+            server = self.filter(server_id=server_id).get()
+            return {
+                "streaming_role": server.streaming_role,
+                "streaming_role_requires": server.streaming_role_requires,
+            }
+        except (Server.DoesNotExist, Server.MultipleObjectsReturned):
+            return {
+                "streaming_role": None,
+                "streaming_role_requires": None,
+            }
+
 
 class Server(models.Model):
     PREFIX_CHOICES = (
@@ -39,6 +52,8 @@ class Server(models.Model):
         blank=True,
         default=list,
     )
+    streaming_role = models.CharField(max_length=64, blank=True)
+    streaming_role_requires = models.CharField(max_length=64, blank=True)
 
     def __str__(self):
         return f"Server({self.server_id!r}, {self.prefix!r})"
