@@ -18,6 +18,9 @@
     <li><a href="/docs/">Documentation</a></li>
     <li><a href="/install/">Install</a></li>
     <li><a href="/about/">About</a></li>
+    {% if user.is_authenticated %}
+    <li><a href="/profile/">Profile</a></li>
+    {% endif %}
   </ul>
 </nav>
 {% endblock "header" %}

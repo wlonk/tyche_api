@@ -1,4 +1,4 @@
-{% load static %}<!DOCTYPE HTML>
+{% load static %}{% load socialaccount %}<!DOCTYPE HTML>
 <!--
 	Dimension by HTML5 UP
 	html5up.net | @ajlkn
@@ -19,6 +19,16 @@
 
 				<!-- Header -->
 					<header id="header">
+            {% if user.is_authenticated %}
+              <form method="POST" action="{% url "account_logout" %}">
+                {% csrf_token %}
+                <input type="submit" value="Log out">
+              </form>
+            {% else %}
+              <form method="GET" action="{% provider_login_url "discord" %}">
+                <input type="submit" value="Log in">
+              </form>
+            {% endif %}
             {% block "header" %}
             {% endblock "header" %}
 					</header>

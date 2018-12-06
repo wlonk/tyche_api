@@ -45,6 +45,7 @@ class Server(models.Model):
 
     objects = ServerManager()
 
+    name = models.CharField(max_length=1024, blank=True)
     server_id = models.CharField(max_length=64, unique=True)
     prefix = models.CharField(max_length=1, choices=PREFIX_CHOICES)
     roles = ArrayField(
