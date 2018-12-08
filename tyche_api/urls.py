@@ -17,16 +17,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from .views import ProfileView
+from .views import ServerListView, ServerUpdateView
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("core.urls")),
-    path("docs/", TemplateView.as_view(template_name="docs.html")),
-    path("install/", TemplateView.as_view(template_name="install.html")),
-    path("about/", TemplateView.as_view(template_name="about.html")),
     path("accounts/", include("allauth.urls")),
-    path("profile/", ProfileView.as_view()),
-    path("", TemplateView.as_view(template_name="root.html")),
+    path("docs/", TemplateView.as_view(template_name="docs.html"), name="docs"),
+    path("install/", TemplateView.as_view(template_name="install.html"), name="install"),
+    path("about/", TemplateView.as_view(template_name="about.html"), name="about"),
+    path("servers/", ServerListView.as_view(), name="server-list"),
+    path("server/<int:pk>/", ServerUpdateView.as_view(), name="server-detail"),
+    path("", TemplateView.as_view(template_name="root.html"), name="root"),
 ]

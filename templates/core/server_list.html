@@ -1,8 +1,8 @@
 {% extends "root.html" %}
 {% block "body" %}
 <ul>
-{% for server in servers %}
-<li>{{ server.name }}
+{% for server in object_list %}
+<li><a href="{% url 'server-detail' server.pk %}">{{ server.name }}</a>
   <ul>
     <li>Prefix: <code>{{ server.prefix }}</code></li>
     <li>Cosmetic roles: <code>{{ server.roles|join:", " }}</code></li>

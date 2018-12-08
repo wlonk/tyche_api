@@ -15,11 +15,11 @@
 </div>
 <nav>
   <ul>
-    <li><a href="/docs/">Documentation</a></li>
-    <li><a href="/install/">Install</a></li>
-    <li><a href="/about/">About</a></li>
+    <li><a href="{% url 'docs' %}">Documentation</a></li>
+    <li><a href="{% url 'install' %}">Install</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
     {% if user.is_authenticated %}
-    <li><a href="/profile/">Profile</a></li>
+    <li><a href="{% url 'server-list' %}">Servers</a></li>
     {% endif %}
   </ul>
 </nav>
