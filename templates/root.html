@@ -1,26 +1,8 @@
 {% extends "base.html" %}
-
 {% block "header" %}
-<div class="logo">
-  <span class="icon fa-gears"></span>
-</div>
-<div class="content">
-  <div class="inner">
-    <h1>Tyche</h1>
-    <p>
-      Tyche handles cosmetic roles, music, now-streaming roles, and
-      dice rolling for you on Discord.
-    </p>
-  </div>
-</div>
-<nav>
-  <ul>
-    <li><a href="{% url 'docs' %}">Documentation</a></li>
-    <li><a href="{% url 'install' %}">Install</a></li>
-    <li><a href="{% url 'about' %}">About</a></li>
-    {% if user.is_authenticated %}
-    <li><a href="{% url 'server-list' %}">Servers</a></li>
-    {% endif %}
-  </ul>
-</nav>
+<h1>Tyche</h1>
+<p>
+  Tyche handles cosmetic roles, music, now-streaming roles, and dice rolling
+  for you on Discord.
+</p>
 {% endblock "header" %}

@@ -1,17 +1,24 @@
 {% extends "root.html" %}
 {% block "body" %}
-<ul>
 {% for server in object_list %}
-<li><a href="{% url 'server-detail' server.pk %}">{{ server.name }}</a>
-  <ul>
-    <li>Prefix: <code>{{ server.prefix }}</code></li>
-    <li>Cosmetic roles: <code>{{ server.roles|join:", " }}</code></li>
-    <li>Now streaming: <code>{{ server.streaming_role }}</code></li>
-    <li>Now streaming requires: <code>{{ server.streaming_role_requires }}</code></li>
-  </ul>
-</li>
-{% empty %}
-<li>No servers</li>
+<div class="card">
+  <div class="card-body">
+    <a href="{% url 'server-detail' server.pk %}">
+      <h5 class="card-title">{{ server.name }}</h5>
+    </a>
+    <p class="card-text">
+    <dl>
+      <dt>Prefix</dt>
+      <dd><code>{{ server.prefix }}</code></dd>
+      <dt>Cosmetic roles</dt>
+      <dd><code>{{ server.roles|join:", " }}</code></dd>
+      <dt>Streaming role</dt>
+      <dd><code>{{ server.streaming_role }}</code></dd>
+      <dt>Streaming role requires</dt>
+      <dd><code>{{ server.streaming_role_requires }}</code></dd>
+    </dl>
+    </p>
+  </div>
+</div>
 {% endfor %}
-</ul>
 {% endblock "body" %}

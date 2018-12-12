@@ -1,11 +1,9 @@
-from django.db import models
+from allauth.socialaccount.signals import social_account_updated
 from django.contrib.auth.models import AbstractUser
 from django.contrib.postgres.fields import ArrayField
-from allauth.socialaccount.signals import social_account_updated
+from django.db import models
 from django.dispatch import receiver
 from django.urls import reverse
-
-
 import requests
 
 

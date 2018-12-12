@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.discord",
+    "crispy_forms",
     "core",
 ]
 
@@ -163,3 +164,5 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsAuthenticated",
     ),
 }
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
