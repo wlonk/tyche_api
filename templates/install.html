@@ -3,22 +3,35 @@
 <article>
 <h2>Installing</h2>
 <p>
-    Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam
-    facilisis ante interdum congue. Integer mollis, nisl amet convallis,
-    porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec
-    lacinia. Nam maximus erat id euismod egestas.
+  Tyche is not available for public use yet.  
 </p>
 <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus
-    rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per
-    conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh
-    porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc
-    ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit
-    amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in
-    aliquam at, euismod in lectus. Pellentesque habitant morbi tristique
-    senectus et netus et malesuada fames ac turpis egestas. In non lorem sit
-    amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed
-    vehicula.
+  If you have access to Tyche, you should have the OAuth link to invite Tyche
+  to your server. Then, log in here and go to the
+  "<a href="{% url "server-list" %}">Servers</a>" tab. Click on the server you
+  want to configure, and you can set the following:
+</p>
+<p>
+  <strong>Prefix:</strong> what you should prefix commands with to make Tyche
+  listen to them.
+</p>
+<p>
+  <strong>Cosmetic roles:</strong> the list of roles you have configured on
+  your Discord server that grant no permissions, but that users can give or
+  take from themselves. These might be pronouns, Starfleet ranks, or who knows
+  what else!
+</p>
+<p>
+  <strong>Streaming role:</strong> the role, already configured on your Discord
+  server, to give to users while they are streaming on Twitch. This should
+  ideally be a role with no privileges, which is displayed separately from
+  other roles, and ranked high enough to show up at or near the top.
+</p>
+<p>
+  <strong>Streaming role requires:</strong> the role, if any, to require before
+  granting a user the streaming role. In the common case where you have many
+  streamers on a server, but only some of them should get their streams
+  advertised or promoted, this is the mechanism to acheive that.
 </p>
 </article>
 {% endblock "body" %}

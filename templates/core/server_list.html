@@ -9,13 +9,26 @@
     <p class="card-text">
     <dl>
       <dt>Prefix</dt>
-      <dd><code>{{ server.prefix }}</code></dd>
+      <dd>
+        <span class="badge badge-pill badge-light">{{ server.prefix }}</span>
+      </dd>
+
       <dt>Cosmetic roles</dt>
-      <dd><code>{{ server.roles|join:", " }}</code></dd>
+      <dd>
+        {% for role in server.roles %}
+        <span class="badge badge-pill badge-light">{{ role }}</span>
+        {% endfor %}
+      </dd>
+
       <dt>Streaming role</dt>
-      <dd><code>{{ server.streaming_role }}</code></dd>
+      <dd>
+        <span class="badge badge-pill badge-light">{{ server.streaming_role }}</span>
+      </dd>
+
       <dt>Streaming role requires</dt>
-      <dd><code>{{ server.streaming_role_requires }}</code></dd>
+      <dd>
+        <span class="badge badge-pill badge-light">{{ server.streaming_role_requires }}</span>
+      </dd>
     </dl>
     </p>
   </div>
